@@ -1,0 +1,17 @@
+version: "3"
+services:
+  verdaccio:
+    image: verdaccio/verdaccio:5
+    container_name: verdaccio
+    ports:
+      - '4873:4873'
+    volumes:
+      - ${DATA_DIR}/verdaccio:/verdaccio/storage:rw
+      # - ${VERDACCIO_CONF_FILE}:/verdaccio/conf/htpasswd:rw
+      - ${VERDACCIO_CONFD_DIR}:/verdaccio/conf:rw
+      - ${VERDACCIO_PLUGIN_DIR}:/verdaccio/plugins:rw
+    environment:
+      - VERDACCIO_PROTOCOL=http # using with https or http
+    # - VERDACCIO_USER_UID=10001
+networks:
+  default:
